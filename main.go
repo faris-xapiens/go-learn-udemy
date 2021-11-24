@@ -1,18 +1,26 @@
 package main
 
-import "log"
+import (
+	"log"
+	"time"
+)
+
+type User struct {
+	FirstName string
+	LastName string
+	PhoneNumber string
+	Age int
+	BirthDate time.Time
+}
 
 func main() {
-	var myString string
-	myString = "Green"
+	user := User {
+		FirstName: "Faris",
+		LastName: "Adlin",
+		PhoneNumber: "09851249124",
+	}
 
-	log.Println("myString is set to", myString)
-	changeUsingPointers(&myString)
-	log.Println("after func call myString is set to", myString)
+	log.Println(user.FirstName, user.LastName, user.PhoneNumber, "BirthDate:", user.BirthDate)
 }
 
-func changeUsingPointers(s *string) {
-	log.Println("s is set to", s)
-	newValue := "Red"
-	*s = newValue
-}
+// Uppercase letter means that is Global meanwhile lowecase letter that is Private meanwhile
