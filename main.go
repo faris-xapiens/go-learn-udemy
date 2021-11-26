@@ -1,25 +1,24 @@
 package main
 
-import (
-	"log"
-	"time"
-)
+import "log"
 
-type User struct {
-	FirstName   string
-	LastName    string
-	PhoneNumber string
-	Age         int
-	BirthDate   time.Time
+type myStruct struct {
+	FirstName string
+}
+
+func (m *myStruct) printFirstName() string {
+	return m.FirstName
 }
 
 func main() {
-	user := User{
-		FirstName:   "Faris",
-		LastName:    "Adlin",
-		PhoneNumber: "09851249124",
-	}
-	log.Println(user.FirstName, user.LastName, user.PhoneNumber, "BirthDate:", user.BirthDate)
-}
+	var myVar myStruct
+	myVar.FirstName = "John"
 
-// Uppercase letter means that is Global meanwhile lowecase letter that is Private meanwhile
+	myVar2 := myStruct{
+		FirstName: "Mary",
+	}
+
+	log.Println("myVar is set to", myVar.printFirstName())
+	log.Println("myVar2 is set to", myVar2.printFirstName())
+
+}
