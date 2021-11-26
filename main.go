@@ -1,24 +1,25 @@
 package main
 
-import "log"
+// type User struct {
+// 	FirstName string
+// 	LastName  string
+// }
 
-type myStruct struct {
-	FirstName string
-}
+// func main() {
+// 	myMap := make(map[string]User)
+// 	me := User{
+// 		FirstName: "Trevor",
+// 		LastName:  "Sawler",
+// 	}
 
-func (m *myStruct) printFirstName() string {
-	return m.FirstName
-}
+// 	myMap["me"] = me
 
-func main() {
-	var myVar myStruct
-	myVar.FirstName = "John"
+// 	log.Println(myMap["me"].FirstName)
 
-	myVar2 := myStruct{
-		FirstName: "Mary",
-	}
+// 	var myNewVar float32
 
-	log.Println("myVar is set to", myVar.printFirstName())
-	log.Println("myVar2 is set to", myVar2.printFirstName())
+// 	myNewVar = 11.1
 
-}
+// 	log.Println(myNewVar)
+
+// }
