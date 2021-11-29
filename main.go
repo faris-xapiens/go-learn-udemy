@@ -1,56 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"log"
 
-type Animal interface {
-	Says() string
-	NumberOfLegs() int
-}
+	"github.com/faris-xapiens/go-learn-udemy/helpers"
+)
 
-type Dog struct {
-	Name  string
-	Breed string
-}
+const numPool = 10
 
-type Gorilla struct {
-	Name          string
-	Color         string
-	NumberOfTeeth int
+func calculateValue(intChan chan int) {
+	randomNumber := helpers.RandomNumber(numPool)
+	intChan <- randomNumber
 }
 
 func main() {
-	dog := Dog{
-		Name:  "Ade",
-		Breed: "Sunhaki Clan",
-	}
+	intChan := make(chan int)
+	defer close(intChan)
 
-	PrintInfo(&dog)
+	go calculateValue(intChan)
 
-	gorilla := Gorilla{
-		Name:          "Jock",
-		Color:         "grey",
-		NumberOfTeeth: 123,
-	}
-
-	PrintInfo(&gorilla)
-}
-
-func PrintInfo(a Animal) {
-	fmt.Println("This animal says", a.Says(), "and has", a.NumberOfLegs(), "legs")
-}
-
-func (d *Dog) Says() string {
-	return "Woof"
-}
-
-func (d *Dog) NumberOfLegs() int {
-	return 4
-}
-
-func (d *Gorilla) Says() string {
-	return "Ugh"
-}
-
-func (d *Gorilla) NumberOfLegs() int {
-	return 2
+	num := <-intChan
+	log.Println(num)
 }
